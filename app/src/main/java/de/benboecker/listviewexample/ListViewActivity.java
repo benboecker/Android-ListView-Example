@@ -19,7 +19,7 @@ import java.util.List;
 public class ListViewActivity extends AppCompatActivity {
 
     private ArrayList<Country> countries = Country.all();
-    private ArrayAdapter<Country> adapter = null;
+    private ArrayAdapter<Country> countryAdapter = null;
     private ListView listView = null;
 
     @Override
@@ -27,10 +27,17 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Custom Adapter & Layout");
+ 		toolbar.setTitle("Custom Adapter & Layout");
 
-        this.adapter = new CountryAdapter(this, this.countries);
-        this.listView = (ListView) findViewById(R.id.list_view);
-        this.listView.setAdapter(adapter);
+        String[] capitals = new String[]{
+				"Berlin", "Amsterdam", "London", "Madrid", "Paris", "Rom", "Prag"
+		};
+		ArrayAdapter<String> arrayAdapter= new ArrayAdapter(this, android.R.layout.simple_list_item_1, capitals);
+
+		this.countryAdapter = new CountryAdapter(this, this.countries);
+
+		this.listView = (ListView) findViewById(R.id.list_view);
+		this.listView.setAdapter(this.countryAdapter);
+		//this.listView.setAdapter(arrayAdapter);
     }
 }

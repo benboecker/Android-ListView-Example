@@ -26,11 +26,12 @@ public class CountryAdapter extends ArrayAdapter<Country> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // Get the data item for this position
-        Country country= getItem(position);
+        Country country = this.getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.country_row, parent, false);
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.country_row, parent, false);
         }
 
         // Lookup view for data population
@@ -41,8 +42,8 @@ public class CountryAdapter extends ArrayAdapter<Country> {
 
         // Populate the data into the template view using the data object
         textViewName.setText(country.name);
-        textViewCapital.setText("Hauptstadt:\t " + country.capital);
-        textViewPopulation.setText("Einwohner:\t " + NumberFormat.getNumberInstance(Locale.GERMANY).format(country.poulation));
+        textViewCapital.setText("\uD83C\uDFD9\t " + country.capital);
+        textViewPopulation.setText("\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67\u200D\uD83D\uDC67\t " + NumberFormat.getNumberInstance(Locale.GERMANY).format(country.poulation));
         textViewFlag.setText(country.flag);
 
         // Return the completed view to render on screen
